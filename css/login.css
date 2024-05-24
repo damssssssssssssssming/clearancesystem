@@ -1,0 +1,255 @@
+body {
+    background-image: url(../images/new_bg.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+#full {
+}
+#full::before {
+    content: '';
+    background-image: linear-gradient(135deg, #56C596, #CFF4D2);
+    position: absolute;
+    top: 80px;
+    left: 195px;
+    bottom: 80px;
+    right: 195px;
+    border-radius: 40px;
+}
+#full2 {
+    position: relative;
+}
+
+#image1 {
+    width: 250px;
+}
+
+#first {
+    line-height: 25px;
+    position: relative;
+    left: -260;
+    bottom: -130;
+    font-size: 20px;
+    color: #e6f8f4;
+    text-shadow: 1px 1px black;
+}
+#second {
+    background-color: #e6f8f4;
+    width: 35%;
+    height: 65%;
+    position: relative;
+    right: -200;
+    top: -275;
+    border-radius: 40px;
+}
+.input1 {
+    height: 45px;
+    width: 370px;
+    background-size: 40px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+    font-size: 20px;
+}
+#input1 {
+    background-size: 40px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+#input1::placeholder {
+    font-size: 20px;
+
+}
+#input2::placeholder {
+    font-size: 20px;
+}
+#input2 {
+    background-size: 35px;
+    background-repeat: no-repeat;
+    padding-left: 30px;
+}
+#button {
+    width: 150px;
+    height: 45px;
+    font-size: 20px;
+    color: black;
+    background-image: linear-gradient(#5efcad, #00c2b8);
+    border-radius: 40px;
+    border-style: none;
+}
+#firstLink {
+    position: relative;
+    left: -125px;
+    top: -15px;
+}
+#head {
+    font-size: 60px;
+    text-shadow: 2px 2px gray;
+}
+#last {
+    font-size: 20px;
+    position: relative;
+    bottom: -20px;
+}
+.inpot {
+    height: 60px;
+    border-radius: 15px;
+    font-size: 20px;
+}
+.inpot::placeholder {
+    position: relative;
+    bottom: -3px;
+    font-size: 20px;
+}
+#full3 {
+    position: relative;
+    bottom: -100px;
+    z-index: 1;
+}
+#create {
+    font-size: 40px;
+}
+.three {
+    width: 565px;
+}
+#address {
+    width: 565px;
+}
+#contact {
+    width: 565px;
+}
+#dateBirth {
+    width: 565px;
+}
+#emailAdd {
+    width: 565px;
+}
+#pass {
+    width: 565px;
+}
+#conPass {
+    width: 565px;
+}
+#botun, #botun1 {
+    width: 150px;
+    height: 45px;
+    font-size: 20px;
+    color: black;
+    background-image: linear-gradient(#5efcad, #00c2b8);
+    border-radius: 40px;
+    border-style: none;
+    position: relative;
+    top: -170px;
+}
+#eks {
+    position: relative;
+    top: -155px;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+    right: -300px;
+}
+#first1 {
+    position: relative;
+    left: -260px;
+    bottom: -130px;
+}
+#second1 {
+    position: relative;
+    right: -180px;
+    top: -310px;
+    width: 1350px;
+    height: 680px;
+}
+#full4 {
+    z-index: 2;
+}
+#full4 {
+    content: '';
+    background-image: linear-gradient(135deg, #56C596, #CFF4D2);
+    width: 700px;
+    height: 1070px;
+    border-radius: 40px;
+    z-index: 2;
+}
+#full5 {
+    background-color: #e6f8f4;
+    height: 1030px;
+    width: 650px;
+    border-radius: 40px;
+    z-index: 3;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure it appears on top */
+  }
+  
+  /* Popup content */
+  .popup-content {
+    background-color: white;
+    width: 60%;
+    max-width: 600px;
+    margin: 100px auto; /* Center the popup vertically and horizontally */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Close button */
+  .close {
+    position: absolute;
+    top: 95px;
+    right:250px;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  
+  /* Button to open the popup */
+  #open-popup {
+    font-size: 16px;
+    cursor: pointer;
+  }
+  .popup1 {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    z-index: 999; /* Ensure it appears on top */
+  }
+  
+  /* Popup content */
+  .popup-content1 {
+    background-color: white;
+    width: 60%;
+    max-width: 600px;
+    margin: 100px auto; /* Center the popup vertically and horizontally */
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* Close button */
+  .close1 {
+    position: absolute;
+    top: 95px;
+    right: 360px;
+    font-size: 40px;
+    cursor: pointer;
+    z-index: 9999;
+  }
+  
+  /* Button to open the popup */
+  #open-popup1 {
+    font-size: 16px;
+    cursor: pointer;
+  }

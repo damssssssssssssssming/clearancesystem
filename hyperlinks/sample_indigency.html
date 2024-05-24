@@ -1,0 +1,136 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fill PDF Form Fields</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+  <input type="text" id="textField1" placeholder="Enter Text for Text-5453s4VWZV">
+  <br>
+  <input type="text" id="textField2" placeholder="Enter Text for Text-0aJtgjwG7m">
+  <br>
+  <input type="text" id="textField3" placeholder="Enter Text for Text-Igq39uPyyZ">
+  <br>
+  <input type="text" id="textField4" placeholder="Enter Text for Text-5OTTtGZyfN">
+  <br>
+  <input type="text" id="textField5" placeholder="Enter Text for Text--feHXBDzWs">
+  <br>
+  <input type="text" id="textField6" placeholder="Enter Text for Text-HIWwe7MTPD">
+  <br>
+  <input type="text" id="textField7" placeholder="Enter Text for Text-ennpkduoPx">
+  <br>
+  <!-- Add similar input fields for other text fields -->
+  <input type="checkbox" id="checkbox1"> Checkbox 1
+  <br>
+  <input type="checkbox" id="checkbox2"> Checkbox 2
+  <br>
+  <input type="checkbox" id="checkbox3"> Checkbox 3
+  <br>
+  <input type="checkbox" id="checkbox4"> Checkbox 4
+  <br>
+  <input type="checkbox" id="checkbox5"> Checkbox 5
+  <br>
+  <!-- Add similar input fields for other checkboxes -->
+  <button onclick="fillFormFields()">Fill Form Fields</button>
+  <div>
+    <canvas id="pdfCanvas"></canvas>
+  </div>
+
+  <script>
+    // PDF file URL
+    const pdfUrl = '../pdfs/indigency.pdf';
+
+    // PDF.js worker URL
+    pdfjsWorkerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+
+    // Initialize PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorkerSrc;
+
+    // Function to fill form fields
+    async function fillFormFields() {
+      // Get input values
+      const text1 = document.getElementById('textField1').value;
+      const text2 = document.getElementById('textField2').value;
+      const text3 = document.getElementById('textField3').value;
+      const text4 = document.getElementById('textField4').value;
+      const text5 = document.getElementById('textField5').value;
+      const text6 = document.getElementById('textField6').value;
+      const text7 = document.getElementById('textField7').value;
+      // Add more text fields as needed
+      const checkbox1 = document.getElementById('checkbox1').checked;
+      const checkbox2 = document.getElementById('checkbox2').checked;
+      const checkbox3 = document.getElementById('checkbox3').checked;
+      const checkbox4 = document.getElementById('checkbox4').checked;
+      const checkbox5 = document.getElementById('checkbox5').checked;
+      // Add more checkboxes as needed
+
+      // Load PDF
+      const loadingTask = pdfjsLib.getDocument(pdfUrl);
+      const pdf = await loadingTask.promise;
+
+      // Get the first page
+      const pageNumber = 1;
+      const page = await pdf.getPage(pageNumber);
+
+      // Get form fields
+      const annotations = await page.getAnnotations();
+      annotations.forEach(annotation => {
+        if (annotation.fieldType === 'Tx') { // Text field type
+          switch(annotation.fieldName) {
+            case 'Text-5453s4VWZV':
+              annotation.fieldValue = text1; // Fill text field Text-5453s4VWZV
+              break;
+            case 'Text-0aJtgjwG7m':
+              annotation.fieldValue = text2; // Fill text field Text-0aJtgjwG7m
+              break;
+              case 'Text-Igq39uPyyZ':
+              annotation.fieldValue = text3; // Fill text field Text-5453s4VWZV
+              break;
+            case 'Text-5OTTtGZyfN':
+              annotation.fieldValue = text4; // Fill text field Text-0aJtgjwG7m
+              break;
+              case 'Text--feHXBDzWs':
+              annotation.fieldValue = text5; // Fill text field Text-5453s4VWZV
+              break;
+            case 'Text-HIWwe7MTPD':
+              annotation.fieldValue = text6; // Fill text field Text-0aJtgjwG7m
+              break;
+              case 'Text-ennpkduoPx':
+              annotation.fieldValue = text7; // Fill text field Text-5453s4VWZV
+              break;
+            // Add more cases for other text fields
+          }
+        } else if (annotation.fieldType === 'Btn') { // Button field type (checkbox)
+          switch(annotation.fieldName) {
+            case 'CheckBox-qccsys4qAO':
+              annotation.fieldValue = checkbox1 ? 'Yes' : 'Off'; // Set checkbox value
+              break;
+            case 'CheckBox-pZVmGB1q9h':
+              annotation.fieldValue = checkbox2 ? 'Yes' : 'Off'; // Set checkbox value
+              break;
+              case 'CCheckBox-sIpzx_J_Cc':
+              annotation.fieldValue = checkbox3 ? 'Yes' : 'Off'; // Set checkbox value
+              break;
+            case 'CheckBox-ZtNTqvj8RP':
+              annotation.fieldValue = checkbox4 ? 'Yes' : 'Off'; // Set checkbox value
+              break;
+              case 'CheckBox-7XpJt1fUgY':
+              annotation.fieldValue = checkbox5 ? 'Yes' : 'Off'; // Set checkbox value
+              break;
+            // Add more cases for other checkboxes
+          }
+        }
+      });
+
+      // Render PDF to canvas
+      const canvas = document.getElementById('pdfCanvas');
+      const context = canvas.getContext('2d');
+      const viewport = page.getViewport({ scale: 1.5 });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      await page.render({ canvasContext: context, viewport });
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update PDF Form</title>
+</head>
+<body>
+    <h1>Update PDF Form</h1>
+    <form id="pdfForm">
+        First Name: <input type="text" name="firstName"><br>
+        Last Name: <input type="text" name="lastName"><br>
+        <button type="submit">Update PDF</button>
+    </form>
+
+    <script>
+        document.getElementById('pdfForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            var formData = new FormData(this);
+
+            fetch('update_pdf.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Handle response (e.g., download or display PDF)
+                window.location.href = response.url;
+            })
+			.catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+</body>
+</html>
+

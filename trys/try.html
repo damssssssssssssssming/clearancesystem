@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Add Required on Checkbox Checked</title>
+</head>
+<body>
+
+<form id="myForm">
+  <input type="checkbox" id="agreeCheckbox"> I agree to the terms and conditions<br>
+  <input type="text" id="nameInput" placeholder="Your Name"><br>
+  <button type="submit">Submit</button>
+</form>
+
+<script>
+const agreeCheckbox = document.getElementById('agreeCheckbox');
+const nameInput = document.getElementById('nameInput');
+
+// Function to toggle the 'required' attribute based on checkbox state
+function toggleRequired() {
+  nameInput.required = agreeCheckbox.checked;
+}
+
+// Attach event listener to checkbox
+agreeCheckbox.addEventListener('change', toggleRequired);
+
+// Call toggleRequired initially to set the initial state
+toggleRequired();
+</script>
+
+</body>
+</html>

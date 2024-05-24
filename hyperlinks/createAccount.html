@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="../css/login.css">
+    <link rel="stylesheet" href="../css/dashboard.css"
+</head>
+<body style="overflow-x: hidden;">
+    <center>
+      <br>
+        <div id="full4">
+          <br>
+            <div id="full5">
+              <br>
+                <div>
+                    <h1 id="create">Create Account</h1>
+                    <form action="../php/signup.php" method="post">
+                        <input id="address" class="inpot" placeholder="Full Name (First Name, Middle Name, Last Name)" name="full_name" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Age" name="age" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Gender" name="sex" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Civil Status" name="civil" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Address" name="address" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Contact Number" type="number" name="contact" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Date of Birth" onfocus="(this. type='date')" name="bert" required/>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Email Address" type="email" name="email" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Password" type="password" name="pass" required>
+                        <br>
+                        <br>
+                        <input id="address" class="inpot" placeholder="Confirm Password" type="password" name="repass" required>
+                        <br>
+                        <br>
+                        <br>
+                        <input type="checkbox" required>
+                        <span style=>I have agreed to the <a href="terms.html">Terms of Use</a> and <a href="data.html">Data Privacy Policy</a></span>
+                        <br>
+                        <br>
+                        <div style="display: flex; justify-content: space-around;">
+                          <input type="submit" value="Submit" name="submit" class="button">
+                      </form>
+                  <button class="button" type="button" onclick="dashboard()">Cancel</button>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </center>
+
+    <script src="../javascript/login.js"></script>
+</body>
+</html>

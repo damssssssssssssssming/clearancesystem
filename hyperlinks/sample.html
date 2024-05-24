@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fill PDF Form Fields</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+  <form action="fill_pdf.php" method="post">
+    <input type="text" name="name" id="name" placeholder="Enter Text for Text-5453s4VWZV">
+    <input type="text" name="textField2" id="textField2" placeholder="Enter Text for Text-0aJtgjwG7m">
+    <!-- Add similar input fields for other text fields -->
+    <input type="checkbox" name="checkbox1" id="checkbox1"> Checkbox 1
+    <input type="checkbox" name="checkbox2" id="checkbox2"> Checkbox 2
+    <!-- Add similar input fields for other checkboxes -->
+    <button type="submit">Fill Form Fields</button>
+  </form>
+  <div>
+    <canvas id="pdfCanvas"></canvas>
+  </div>
+
+  <script>
+    // PDF file URL
+    const pdfUrl = '../pdfs/indigency.pdf';
+
+    // PDF.js worker URL
+    const pdfjsWorkerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.worker.min.js';
+
+    // Initialize PDF.js
+    pdfjsLib.GlobalWorkerOptions.workerSrc = pdfjsWorkerSrc;
+
+    // Function to fill form fields
+    async function fillFormFields() {
+      // Get input values
+      const text1 = document.getElementById('name').value;
+      const text2 = document.getElementById('textField2').value;
+      // Add more text fields as needed
+      const checkbox1 = document.getElementById('checkbox1').checked;
+      const checkbox2 = document.getElementById('checkbox2').checked;
+      // Add more checkboxes as needed
+
+      // Load PDF
+      const loadingTask = pdfjsLib.getDocument(pdfUrl);
+      const pdf = await loadingTask.promise;
+
+      // Get the first page
+      const pageNumber = 1;
+      const page = await pdf.getPage(pageNumber);
+
+      // Get form fields
+      const formFields = await page.getAnnotations();
+
+      // Loop through form fields
+      formFields.forEach(field => {
+        const fieldName = field.fieldName;
+        const fieldType = field.fieldType;
+
+        if (fieldType === 'Tx') { // Text field type
+          switch(fieldName) {
+            case 'name':
+              field.setValue(text1); // Fill text field Text-5453s4VWZV
+              break;
+            case 'textField2':
+              field.setValue(text2); // Fill text field Text-0aJtgjwG7m
+              break;
+            // Add more cases for other text fields
+          }
+        } else if (fieldType === 'Btn') { // Button field type (checkbox)
+          switch(fieldName) {
+            case 'checkbox1':
+              field.checkBox = checkbox1; // Fill checkbox CheckBox-qccsys4qAO
+              break;
+            case 'checkbox2':
+              field.checkBox = checkbox2; // Fill checkbox CheckBox-pZVmGB1q9h
+              break;
+            // Add more cases for other checkboxes
+          }
+        }
+      });
+
+      // Render PDF to canvas
+      const canvas = document.getElementById('pdfCanvas');
+      const context = canvas.getContext('2d');
+      const viewport = page.getViewport({ scale: 1.5 });
+      canvas.height = viewport.height;
+      canvas.width = viewport.width;
+      await page.render({ canvasContext: context, viewport });
+    }
+  </script>
+</body>
+</html>

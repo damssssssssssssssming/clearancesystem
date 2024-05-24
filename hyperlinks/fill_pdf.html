@@ -1,0 +1,64 @@
+<?php
+require_once('../FPDI_master/src/autoload.php');
+
+// PDF file URL
+$pdfUrl = '../pdfs/indigency.pdf';
+
+// Get input values from the form
+$text1 = $_POST['name'];
+$text2 = $_POST['textField2'];
+// Add more input values as needed
+$checkbox1 = isset($_POST['checkbox1']) ? true : false;
+$checkbox2 = isset($_POST['checkbox2']) ? true : false;
+// Add more checkboxes as needed
+
+// Load existing PDF
+$pdf = new FPDI();
+$pageCount = $pdf->setSourceFile($pdfUrl);
+
+// Import pages from existing PDF
+for ($pageNumber = 1; $pageNumber <= $pageCount; $pageNumber++) {
+    $templateId = $pdf->importPage($pageNumber);
+    $pdf->addPage();
+    $pdf->useTemplate($templateId, 0, 0, 210); // Adjust page size as needed
+}
+
+// Get all annotations
+$annotations = $pdf->getAllAnnotations();
+
+// Loop through annotations and modify values
+foreach ($annotations as $annotation) {
+    $fieldName = $annotation['Field'];
+    $fieldType = $annotation['Subtype'];
+
+    if ($fieldType === '/Tx') { // Text field type
+        switch($fieldName) {
+            case 'name':
+                $pdf->SetField($fieldName, $text1);
+                echo "bababa";
+                break;
+            case 'textField2':
+                $pdf->SetField($fieldName, $text2);
+                break;
+            // Add more cases for other text fields
+        }
+    } else if ($fieldType === '/Btn') { // Button field type (checkbox)
+        switch($fieldName) {
+            case 'checkbox1':
+                $pdf->SetField($fieldName, $checkbox1);
+                break;
+            case 'checkbox2':
+                $pdf->SetField($fieldName, $checkbox2);
+                break;
+            // Add more cases for other checkboxes
+        }
+    }
+}
+
+// Output modified PDF
+$pdf->Output('output.pdf', 'F');
+
+// Redirect back to the form page
+header('Location: sample.html');
+exit();
+?>
